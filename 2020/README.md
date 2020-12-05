@@ -1,5 +1,5 @@
 [Advent of Code 2020](https://adventofcode.com/2020)
-===================
+==========
 
 | Day | Challenge | Solution |
 |:---:|:---|:---:|
@@ -8,4 +8,5 @@
 | 3 | [Toboggan Trajectory](https://adventofcode.com/2020/day/3) | [solution](./3/solve.py) |
 | 4 | [Passport Processing](https://adventofcode.com/2020/day/4) | [solution](./4/solve.py) |
 | 5 | [Binary Boarding](https://adventofcode.com/2020/day/5) | [solution](./5/solve.py) |
-Last updated: 05/12/2020, 13:52:24
+
+Last updated: 05/12/2020, 13:54:33
