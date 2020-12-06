@@ -38,6 +38,7 @@ def main():
 
     chunks = list(map(mapper, chunks))
 
+    # 1 star
     def validator1(d: dict):
         keys = list(d.keys())
         return all(v in keys for v in fields)
@@ -45,6 +46,7 @@ def main():
     validated = list(filter(validator1, chunks))
     print(len(validated))
 
+    # 2 stars
     def validator2(d):
         for k, v in d.items():
             r = fields[k](v)

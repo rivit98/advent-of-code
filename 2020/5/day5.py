@@ -7,6 +7,7 @@ def main():
     ROW_MIN, ROW_MAX = 0, 127
     COL_MIN, COL_MAX = 0, 7
 
+    # 1 star
     t = {
         "F": lambda x, y: (x, x + (y-x)//2),
         "B": lambda x, y: (ceil(x+(y-x)/2), y),
@@ -27,7 +28,7 @@ def main():
     seats = list(map(mapper, data))
     print(max(seats))
 
-    # all_seats = {x * 8 + y for x in range(ROW_MAX+1) for y in range(COL_MAX+1)}
+    # 2 stars
     all_seats = {x for x in range(min(seats), max(seats))}
     free = all_seats.difference(set(seats))
     print(free)

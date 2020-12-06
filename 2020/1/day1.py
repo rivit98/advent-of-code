@@ -3,6 +3,7 @@ def task1():
     with open("D:\\adventOfCode\\1\\input.txt", "rt") as f:
         numbers = list(map(int, f.read().splitlines()))
 
+    # 1 star
     d = {}
     for n in numbers:
         if n in d:
@@ -12,7 +13,7 @@ def task1():
 
         d[SUM - n] = n
 
-
+    # 2 stars
     for a in numbers:
         for b in numbers:
             for c in numbers:

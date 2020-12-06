@@ -11,7 +11,7 @@ def main():
 
     data = list(map(mapper, data))
 
-
+    # 1 star
     def onestar(tpl):
         a, b, letter, password = tpl
         return a <= password.count(letter) <= b
