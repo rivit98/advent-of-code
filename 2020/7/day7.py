@@ -19,6 +19,7 @@ def main():
                                         s[1].split(',')]
 
     data = list(map(mapper, data))
+    data.extend(empty_bags_data)
 
     # 1 star
     colors = {LOOK_FOR}
@@ -32,17 +33,12 @@ def main():
     print(len(colors) - 1)
 
     # 2 star
-    data.extend(empty_bags_data)
-
     def count_bags(color):
-        sum = 0
-
-        for bag, contained_bags in data:
-            if bag == color:
-                for count, cbag in contained_bags:
-                    sum += count * count_bags(cbag)
-
-        return 1 + sum
+        return 1 + sum([
+            bag_count * count_bags(cbag)
+            for bags in map(lambda x: x[1], filter(lambda x: x[0] == color, data))
+            for bag_count, cbag in bags
+        ])
 
 
     print(count_bags('shiny gold')-1)
