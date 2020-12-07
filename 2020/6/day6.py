@@ -4,7 +4,7 @@ def main():
     with open("./input.txt", "rt") as f:
         data = f.read().splitlines()
 
-    chunks = [list(group) for k, group in groupby(data, lambda k: k == '') if not k ]
+    chunks = [list(group) for k, group in groupby(data, lambda k: k == '') if not k]
 
     # 1 star
     counts = list(map(lambda group: len(set(list(''.join(group)))), chunks))
