@@ -9,5 +9,6 @@
 | 4 | [Passport Processing](https://adventofcode.com/2020/day/4) | [solution](./4/day4.py) |
 | 5 | [Binary Boarding](https://adventofcode.com/2020/day/5) | [solution](./5/day5.py) |
 | 6 | [Custom Customs](https://adventofcode.com/2020/day/6) | [solution](./6/day6.py) |
+| 7 | [Handy Haversacks](https://adventofcode.com/2020/day/7) | [solution](./7/day7.py) |
 
-Last updated: 06/12/2020, 10:06:39
+Last updated: 07/12/2020, 16:07:40
