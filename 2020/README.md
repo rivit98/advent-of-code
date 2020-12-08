@@ -10,5 +10,6 @@
 | 5 | [Binary Boarding](https://adventofcode.com/2020/day/5) | [solution](./5/day5.py) |
 | 6 | [Custom Customs](https://adventofcode.com/2020/day/6) | [solution](./6/day6.py) |
 | 7 | [Handy Haversacks](https://adventofcode.com/2020/day/7) | [solution](./7/day7.py) |
+| 8 | [Handheld Halting](https://adventofcode.com/2020/day/8) | [solution](./8/day8.py) |
 
-Last updated: 07/12/2020, 16:09:14
+Last updated: 08/12/2020, 11:05:29
