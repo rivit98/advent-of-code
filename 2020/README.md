@@ -11,5 +11,6 @@
 | 6 | [Custom Customs](https://adventofcode.com/2020/day/6) | [solution](./6/day6.py) |
 | 7 | [Handy Haversacks](https://adventofcode.com/2020/day/7) | [solution](./7/day7.py) |
 | 8 | [Handheld Halting](https://adventofcode.com/2020/day/8) | [solution](./8/day8.py) |
+| 9 | [Encoding Error](https://adventofcode.com/2020/day/9) | [solution](./9/day9.py) |
 
-Last updated: 08/12/2020, 11:05:29
+Last updated: 09/12/2020, 09:16:46
