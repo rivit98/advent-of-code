@@ -37,10 +37,8 @@ def map_seat(d, x, y):
 
 def map_seat2(d, x, y):
     c = count_adjacent2(d, x, y)
-    if d[x][y] == 'L' and c == 0:
-        return '#'
-    elif d[x][y] == '#' and c >= 5:
-        return 'L'
+    if d[x][y] == 'L' and c == 0: return '#'
+    elif d[x][y] == '#' and c >= 5: return 'L'
 
     return d[x][y]
 
