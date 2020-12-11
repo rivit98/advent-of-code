@@ -93,7 +93,7 @@ def build_challenges(dir, cached):
     new_cache = {}
     challenge_folders = [name for name in os.listdir(dir) if os.path.isdir(os.path.join(dir, name))]
     challenge_folders = list(filter(lambda s: s.isnumeric(), challenge_folders))
-    challenge_folders = list(map(int, challenge_folders))
+    challenge_folders = sorted(list(map(int, challenge_folders)))
     out_challs = []
     for chall_id in challenge_folders:
         chall = cached.get(chall_id)

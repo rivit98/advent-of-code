@@ -4,8 +4,6 @@
 | Day | Challenge | Solution |
 |:---:|:---|:---:|
 | 1 | [Report Repair](https://adventofcode.com/2020/day/1) | [solution](./1/day1.py) |
-| 10 | [Adapter Array](https://adventofcode.com/2020/day/10) | [solution](./10/day10.py) |
-| 11 | [Seating System](https://adventofcode.com/2020/day/11) | [solution](./11/day11.py) |
 | 2 | [Password Philosophy](https://adventofcode.com/2020/day/2) | [solution](./2/day2.py) |
 | 3 | [Toboggan Trajectory](https://adventofcode.com/2020/day/3) | [solution](./3/day3.py) |
 | 4 | [Passport Processing](https://adventofcode.com/2020/day/4) | [solution](./4/day4.py) |
@@ -14,5 +12,7 @@
 | 7 | [Handy Haversacks](https://adventofcode.com/2020/day/7) | [solution](./7/day7.py) |
 | 8 | [Handheld Halting](https://adventofcode.com/2020/day/8) | [solution](./8/day8.py) |
 | 9 | [Encoding Error](https://adventofcode.com/2020/day/9) | [solution](./9/day9.py) |
+| 10 | [Adapter Array](https://adventofcode.com/2020/day/10) | [solution](./10/day10.py) |
+| 11 | [Seating System](https://adventofcode.com/2020/day/11) | [solution](./11/day11.py) |
 
-Last updated: 11/12/2020, 11:11:38
+Last updated: 11/12/2020, 11:16:36
