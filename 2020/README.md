@@ -14,5 +14,6 @@
 | 9 | [Encoding Error](https://adventofcode.com/2020/day/9) | [solution](./9/day9.py) |
 | 10 | [Adapter Array](https://adventofcode.com/2020/day/10) | [solution](./10/day10.py) |
 | 11 | [Seating System](https://adventofcode.com/2020/day/11) | [solution](./11/day11.py) |
+| 12 | [Rain Risk](https://adventofcode.com/2020/day/12) | [solution](./12/day12.py) |
 
-Last updated: 11/12/2020, 11:16:36
+Last updated: 12/12/2020, 10:45:36
