@@ -16,5 +16,6 @@
 | 11 | [Seating System](https://adventofcode.com/2020/day/11) | [solution](./11/day11.py) |
 | 12 | [Rain Risk](https://adventofcode.com/2020/day/12) | [solution](./12/day12.py) |
 | 13 | [Shuttle Search](https://adventofcode.com/2020/day/13) | [solution](./13/day13.py) |
+| 14 | [Docking Data](https://adventofcode.com/2020/day/14) | [solution](./14/day14.py) |
 
-Last updated: 13/12/2020, 11:31:22
+Last updated: 14/12/2020, 11:04:56
