@@ -21,9 +21,7 @@ def load_cache():
         with open("./cache.bin", "rb") as f:
             return pickle.load(f)
     except:
-        pass
-
-    return {}
+        return {}
 
 
 def save_cache(cache):
@@ -56,16 +54,17 @@ class Challenge:
 
 
 def find_solve_file(chall_id):
-    ALLOWED_EXTENSTIONS = ['.py']
-    for fname in os.listdir('../{}'.format(chall_id)):
-        if fname.endswith('.txt'):
+    ALLOWED_EXTENSIONS = ['.py']
+    IGNORED_EXTENSIONS = ['.txt', '.pyc', '.md']
+    for fname in os.listdir('../day{:02}'.format(chall_id)):
+        if any(fname.endswith(x) for x in IGNORED_EXTENSIONS):
             continue
 
-        if any(fname.endswith(x) for x in ALLOWED_EXTENSTIONS):
+        if any(fname.endswith(x) for x in ALLOWED_EXTENSIONS):
             return fname
 
 
-def download_data(chall_id):
+def create_challenge_entry(chall_id):
     link = LINK_FORMAT.format(chall_id)
     print("Downloading title from: " + link)
     request = requests.get(link)
@@ -85,27 +84,26 @@ def download_data(chall_id):
         chall_id,
         title,
         link,
-        './{}/{}'.format(chall_id, filename)
+        './day{:02}/{}'.format(chall_id, filename)
     )
 
 
 def build_challenges(dir, cached):
-    new_cache = {}
     challenge_folders = [name for name in os.listdir(dir) if os.path.isdir(os.path.join(dir, name))]
-    challenge_folders = list(filter(lambda s: s.isnumeric(), challenge_folders))
-    challenge_folders = sorted(list(map(int, challenge_folders)))
+    challenge_folders = sorted(list(filter(lambda s: s.startswith('day'), challenge_folders)))
     out_challs = []
-    for chall_id in challenge_folders:
-        chall = cached.get(chall_id)
+    for day_number, challenge_id in enumerate(challenge_folders):
+        day_number += 1
+        chall = cached.get(day_number)
         if chall:
             out_challs.append(chall)
         else:
-            chall = download_data(chall_id)
+            chall = create_challenge_entry(day_number)
             out_challs.append(chall)
+            cached[day_number] = chall
 
-        new_cache[chall_id] = chall
 
-    save_cache(new_cache)
+    save_cache(cached)
     return out_challs
 
 
@@ -122,7 +120,7 @@ def main():
     )
 
     save_readme(rendered)
-    print("Readme generated!")
+    print("Readme {} generated!".format(CURRENT_YEAR))
 
 
 if __name__ == '__main__':
