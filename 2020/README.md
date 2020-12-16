@@ -18,5 +18,6 @@
 | 13 | [Shuttle Search](https://adventofcode.com/2020/day/13) | [solution](./day13/day13.py) |
 | 14 | [Docking Data](https://adventofcode.com/2020/day/14) | [solution](./day14/day14.py) |
 | 15 | [Rambunctious Recitation](https://adventofcode.com/2020/day/15) | [solution](./day15/day15.py) |
+| 16 | [Ticket Translation](https://adventofcode.com/2020/day/16) | [solution](./day16/day16.py) |
 
-Last updated: 15/12/2020, 11:13:03
+Last updated: 16/12/2020, 17:32:51
