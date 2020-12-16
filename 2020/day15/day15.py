@@ -1,5 +1,6 @@
-data = '0,1,4,13,15,12,16'
-data = list(map(int, data.split(',')))
+with open("./input.txt", "rt") as f:
+    data = f.read().splitlines()[0]
+    data = list(map(int, data.split(',')))
 
 occurences = {v: i for i, v in enumerate(data)}
 while len(data) < 30000000:
