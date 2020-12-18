@@ -19,5 +19,6 @@
 | 14 | [Docking Data](https://adventofcode.com/2020/day/14) | [solution](./day14/day14.py) |
 | 15 | [Rambunctious Recitation](https://adventofcode.com/2020/day/15) | [solution](./day15/day15.py) |
 | 16 | [Ticket Translation](https://adventofcode.com/2020/day/16) | [solution](./day16/day16.py) |
+| 17 | [Conway Cubes](https://adventofcode.com/2020/day/17) | [solution](./day17/day17.py) |
 
-Last updated: 16/12/2020, 17:32:51
+Last updated: 18/12/2020, 22:26:47
