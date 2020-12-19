@@ -20,5 +20,6 @@
 | 15 | [Rambunctious Recitation](https://adventofcode.com/2020/day/15) | [solution](./day15/day15.py) |
 | 16 | [Ticket Translation](https://adventofcode.com/2020/day/16) | [solution](./day16/day16.py) |
 | 17 | [Conway Cubes](https://adventofcode.com/2020/day/17) | [solution](./day17/day17.py) |
+| 18 | [Operation Order](https://adventofcode.com/2020/day/18) | [solution](./day18/day18.py) |
 
-Last updated: 18/12/2020, 22:26:47
+Last updated: 19/12/2020, 12:26:50
