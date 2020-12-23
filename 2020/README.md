@@ -22,5 +22,6 @@
 | 17 | [Conway Cubes](https://adventofcode.com/2020/day/17) | [solution](./day17/day17.py) |
 | 18 | [Operation Order](https://adventofcode.com/2020/day/18) | [solution](./day18/day18.py) |
 | 19 | [Monster Messages](https://adventofcode.com/2020/day/19) | [solution](./day19/day19.py) |
+| 20 | [Jurassic Jigsaw](https://adventofcode.com/2020/day/20) | [solution](./day20/day20.py) |
 
-Last updated: 20/12/2020, 20:51:07
+Last updated: 23/12/2020, 16:19:05
