@@ -23,5 +23,6 @@
 | 18 | [Operation Order](https://adventofcode.com/2020/day/18) | [solution](./day18/day18.py) |
 | 19 | [Monster Messages](https://adventofcode.com/2020/day/19) | [solution](./day19/day19.py) |
 | 20 | [Jurassic Jigsaw](https://adventofcode.com/2020/day/20) | [solution](./day20/day20.py) |
+| 21 | [Allergen Assessment](https://adventofcode.com/2020/day/21) | [solution](./day21/day21.py) |
 
-Last updated: 23/12/2020, 16:19:05
+Last updated: 24/12/2020, 13:42:17
