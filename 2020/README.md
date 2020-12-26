@@ -25,5 +25,6 @@
 | 20 | [Jurassic Jigsaw](https://adventofcode.com/2020/day/20) | [solution](./day20/day20.py) |
 | 21 | [Allergen Assessment](https://adventofcode.com/2020/day/21) | [solution](./day21/day21.py) |
 | 22 | [Crab Combat](https://adventofcode.com/2020/day/22) | [solution](./day22/day22.py) |
+| 23 | [Crab Cups](https://adventofcode.com/2020/day/23) | [solution](./day23/day23.py) |
 
-Last updated: 25/12/2020, 11:43:06
+Last updated: 26/12/2020, 10:09:49
