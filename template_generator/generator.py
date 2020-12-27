@@ -122,7 +122,7 @@ class Config:
         self.year = year
         self.folder = "../{}".format(self.year)
         self.format_link = "https://adventofcode.com/{}/day/{{}}".format(self.year)
-        self.cache = "{}/.cache{}.bin".format(self.folder, self.year)
+        self.cache = "{}/.cache.bin".format(self.folder)
 
 
 
