@@ -8,17 +8,13 @@ import pickle
 from jinja2 import Template
 from bs4 import BeautifulSoup
 
-now = datetime.datetime.now()
-CURRENT_YEAR = now.year
-CURRENT_YEAR_FOLDER = "./{}".format(CURRENT_YEAR)
-CHALLENGES_DIR = '../'  # relative to generator
-LINK_FORMAT = "https://adventofcode.com/{}/day/{{}}".format(CURRENT_YEAR)
+config = None
 title_extraction_regex = re.compile(r': (.*) -')
 
 
 def load_cache():
     try:
-        with open("./cache.bin", "rb") as f:
+        with open(config.cache, "rb") as f:
             return pickle.load(f)
     except:
         return {}
@@ -26,14 +22,14 @@ def load_cache():
 
 def save_cache(cache):
     try:
-        with open("./cache.bin", "wb") as f:
+        with open(config.cache, "wb") as f:
             return pickle.dump(cache, f)
     except Exception as e:
         print(e)
 
 
 def save_readme(data):
-    with open("../README.md", "wt") as f:
+    with open("{}/README.md".format(config.folder), "wt") as f:
         return f.write(data)
 
 
@@ -56,7 +52,7 @@ class Challenge:
 def find_solve_file(chall_id):
     ALLOWED_EXTENSIONS = ['.py']
     IGNORED_EXTENSIONS = ['.txt', '.pyc', '.md']
-    for fname in os.listdir('../day{:02}'.format(chall_id)):
+    for fname in os.listdir('{}/day{:02}'.format(config.folder, chall_id)):
         if any(fname.endswith(x) for x in IGNORED_EXTENSIONS):
             continue
 
@@ -65,7 +61,7 @@ def find_solve_file(chall_id):
 
 
 def create_challenge_entry(chall_id):
-    link = LINK_FORMAT.format(chall_id)
+    link = config.format_link.format(chall_id)
     print("Downloading title from: " + link)
     request = requests.get(link)
     soup = BeautifulSoup(request.content, 'html.parser')
@@ -88,8 +84,9 @@ def create_challenge_entry(chall_id):
     )
 
 
-def build_challenges(dir, cached):
-    challenge_folders = [name for name in os.listdir(dir) if os.path.isdir(os.path.join(dir, name))]
+def build_challenges():
+    cached = load_cache()
+    challenge_folders = [name for name in os.listdir(config.folder) if os.path.isdir(os.path.join(config.folder, name))]
     challenge_folders = sorted(list(filter(lambda s: s.startswith('day'), challenge_folders)))
     out_challs = []
     for day_number, challenge_id in enumerate(challenge_folders):
@@ -108,20 +105,31 @@ def build_challenges(dir, cached):
 
 
 def main():
-    cached = load_cache()
-    template = load_template()
+    challs = build_challenges()
 
-    challs = build_challenges(CHALLENGES_DIR, cached)
-
-    rendered = template.render(
-        year=CURRENT_YEAR,
+    rendered = load_template().render(
+        year=config.year,
         solved_challs=challs,
-        last_updated=now.strftime("%d/%m/%Y, %H:%M:%S")
+        last_updated=datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
     )
 
     save_readme(rendered)
-    print("Readme {} generated!".format(CURRENT_YEAR))
+    print("Readme {} generated!".format(config.year))
+
+
+class Config:
+    def __init__(self, year):
+        self.year = year
+        self.folder = "../{}".format(self.year)
+        self.format_link = "https://adventofcode.com/{}/day/{{}}".format(self.year)
+        self.cache = "{}/.cache{}.bin".format(self.folder, self.year)
+
 
 
 if __name__ == '__main__':
+    if len(sys.argv) == 1:
+        config = Config(datetime.datetime.now().year)
+    else:
+        config = Config(int(sys.argv[1]))
+
     main()

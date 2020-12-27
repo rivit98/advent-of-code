@@ -29,4 +29,4 @@
 | 24 | [Lobby Layout](https://adventofcode.com/2020/day/24) | [solution](./day24/day24.py) |
 | 25 | [Combo Breaker](https://adventofcode.com/2020/day/25) | [solution](./day25/day25.py) |
 
-Last updated: 27/12/2020, 17:32:58
+Last updated: 27/12/2020, 18:48:24
