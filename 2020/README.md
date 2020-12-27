@@ -26,5 +26,6 @@
 | 21 | [Allergen Assessment](https://adventofcode.com/2020/day/21) | [solution](./day21/day21.py) |
 | 22 | [Crab Combat](https://adventofcode.com/2020/day/22) | [solution](./day22/day22.py) |
 | 23 | [Crab Cups](https://adventofcode.com/2020/day/23) | [solution](./day23/day23.py) |
+| 24 | [Lobby Layout](https://adventofcode.com/2020/day/24) | [solution](./day24/day24.py) |
 
-Last updated: 26/12/2020, 10:09:49
+Last updated: 27/12/2020, 14:35:07
