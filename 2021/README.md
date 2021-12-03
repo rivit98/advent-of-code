@@ -5,5 +5,6 @@
 |:---:|:---|:---:|
 | 1 | [Sonar Sweep](https://adventofcode.com/2021/day/1) | [solution](./day01/day1.py) |
 | 2 | [Dive!](https://adventofcode.com/2021/day/2) | [solution](./day02/day2.py) |
+| 3 | [Binary Diagnostic](https://adventofcode.com/2021/day/3) | [solution](./day03/day3.py) |
 
-Last updated: 02/12/2021, 08:57:38
+Last updated: 03/12/2021, 13:05:03
