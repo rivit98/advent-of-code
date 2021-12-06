@@ -1,5 +1,7 @@
 import json
 import datetime
+from pathlib import Path
+
 import requests
 import os
 import re
@@ -14,28 +16,21 @@ title_extraction_regex = re.compile(r': (.*) -')
 
 def load_cache():
     try:
-        with open(config.cache, "rb") as f:
-            return pickle.load(f)
+        return pickle.loads(Path(config.cache).read_bytes())
     except:
         return {}
 
 
 def save_cache(cache):
-    try:
-        with open(config.cache, "wb") as f:
-            return pickle.dump(cache, f)
-    except Exception as e:
-        print(e)
+    Path(config.cache).write_bytes(pickle.dumps(cache))
 
 
-def save_readme(data):
-    with open("{}/README.md".format(config.folder), "wt") as f:
-        return f.write(data)
+def save_file(path, data):
+    Path(path).write_text(data)
 
 
-def load_template():
-    with open('./template.md.jinja') as f:
-        return Template(f.read())
+def load_template(path):
+    return Template(Path(path).read_text())
 
 
 class Challenge:
@@ -49,13 +44,17 @@ class Challenge:
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
 
 
+class Edition:
+    def __init__(self, y, completed, total_challs):
+        self.year = y
+        self.completed = completed
+        self.total = total_challs
+        self.percent = round((100 * self.completed) / self.total, 2)
+
+
 def find_solve_file(chall_id):
     ALLOWED_EXTENSIONS = ['.py']
-    IGNORED_EXTENSIONS = ['.txt', '.pyc', '.md']
     for fname in os.listdir('{}/day{:02}'.format(config.folder, chall_id)):
-        if any(fname.endswith(x) for x in IGNORED_EXTENSIONS):
-            continue
-
         if any(fname.endswith(x) for x in ALLOWED_EXTENSIONS):
             return fname
 
@@ -87,10 +86,9 @@ def create_challenge_entry(chall_id):
 def build_challenges():
     cached = load_cache()
     challenge_folders = [name for name in os.listdir(config.folder) if os.path.isdir(os.path.join(config.folder, name))]
-    challenge_folders = sorted(list(filter(lambda s: s.startswith('day'), challenge_folders)))
+    challenge_folders = sorted(filter(lambda s: s.startswith('day'), challenge_folders))
     out_challs = []
-    for day_number, challenge_id in enumerate(challenge_folders):
-        day_number += 1
+    for day_number, challenge_id in enumerate(challenge_folders, 1):
         chall = cached.get(day_number)
         if chall:
             out_challs.append(chall)
@@ -99,31 +97,53 @@ def build_challenges():
             out_challs.append(chall)
             cached[day_number] = chall
 
-
     save_cache(cached)
     return out_challs
 
 
-def main():
-    challs = build_challenges()
+def build_editions():
+    year_folders = [name for name in os.listdir('..') if
+                    os.path.isdir(os.path.join(f'../{name}')) and name.isnumeric()]
+    editions = []
+    for yf in year_folders:
+        yf_path = f'../{yf}'
+        challenge_folders = [name for name in os.listdir(yf_path) if os.path.isdir(os.path.join(yf_path, name))]
+        editions.append(
+            Edition(int(yf), len(challenge_folders), 25)
+        )
 
-    rendered = load_template().render(
+
+    return sorted(editions, key=lambda e: e.year, reverse=True)
+
+
+def main():
+    cur_date = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+    challs = build_challenges()
+    rendered = load_template('./template.md.jinja').render(
         year=config.year,
         solved_challs=challs,
-        last_updated=datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
+        last_updated=cur_date
     )
 
-    save_readme(rendered)
-    print("Readme {} generated!".format(config.year))
+    save_file(f"{config.folder}/README.md", rendered)
+    print(f"Readme {config.year} generated!")
+
+    editions = build_editions()
+    rendered = load_template('./template_main.md.jinja').render(
+        editions=editions,
+        last_updated=cur_date
+    )
+
+    save_file(f"../README.md", rendered)
+    print(f"Main Readme {config.year} generated!")
 
 
 class Config:
     def __init__(self, year):
         self.year = year
-        self.folder = "../{}".format(self.year)
-        self.format_link = "https://adventofcode.com/{}/day/{{}}".format(self.year)
-        self.cache = "{}/.cache.bin".format(self.folder)
-
+        self.folder = f"../{self.year}"
+        self.format_link = f"https://adventofcode.com/{self.year}/day/{{}}"
+        self.cache = f"{self.folder}/.cache.bin"
 
 
 if __name__ == '__main__':
