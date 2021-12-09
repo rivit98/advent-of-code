@@ -11,5 +11,6 @@
 | 6 | [Lanternfish](https://adventofcode.com/2021/day/6) | [solution](./day06/day6.py) |
 | 7 | [The Treachery of Whales](https://adventofcode.com/2021/day/7) | [solution](./day07/day7.py) |
 | 8 | [Seven Segment Search](https://adventofcode.com/2021/day/8) | [solution](./day08/day8.py) |
+| 9 | [Smoke Basin](https://adventofcode.com/2021/day/9) | [solution](./day09/day9.py) |
 
-Last updated: 08/12/2021, 16:04:15
+Last updated: 09/12/2021, 20:24:47
