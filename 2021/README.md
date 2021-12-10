@@ -12,5 +12,6 @@
 | 7 | [The Treachery of Whales](https://adventofcode.com/2021/day/7) | [solution](./day07/day7.py) |
 | 8 | [Seven Segment Search](https://adventofcode.com/2021/day/8) | [solution](./day08/day8.py) |
 | 9 | [Smoke Basin](https://adventofcode.com/2021/day/9) | [solution](./day09/day9.py) |
+| 10 | [Syntax Scoring](https://adventofcode.com/2021/day/10) | [solution](./day10/day10.py) |
 
-Last updated: 09/12/2021, 20:24:47
+Last updated: 10/12/2021, 15:35:34
