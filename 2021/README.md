@@ -13,5 +13,6 @@
 | 8 | [Seven Segment Search](https://adventofcode.com/2021/day/8) | [solution](./day08/day8.py) |
 | 9 | [Smoke Basin](https://adventofcode.com/2021/day/9) | [solution](./day09/day9.py) |
 | 10 | [Syntax Scoring](https://adventofcode.com/2021/day/10) | [solution](./day10/day10.py) |
+| 11 | [Dumbo Octopus](https://adventofcode.com/2021/day/11) | [solution](./day11/day11.py) |
 
-Last updated: 10/12/2021, 15:35:34
+Last updated: 11/12/2021, 10:27:01
