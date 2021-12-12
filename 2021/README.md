@@ -14,5 +14,6 @@
 | 9 | [Smoke Basin](https://adventofcode.com/2021/day/9) | [solution](./day09/day9.py) |
 | 10 | [Syntax Scoring](https://adventofcode.com/2021/day/10) | [solution](./day10/day10.py) |
 | 11 | [Dumbo Octopus](https://adventofcode.com/2021/day/11) | [solution](./day11/day11.py) |
+| 12 | [Passage Pathing](https://adventofcode.com/2021/day/12) | [solution](./day12/day12.py) |
 
-Last updated: 11/12/2021, 10:27:01
+Last updated: 12/12/2021, 12:25:48
