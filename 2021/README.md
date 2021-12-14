@@ -16,5 +16,6 @@
 | 11 | [Dumbo Octopus](https://adventofcode.com/2021/day/11) | [solution](./day11/day11.py) |
 | 12 | [Passage Pathing](https://adventofcode.com/2021/day/12) | [solution](./day12/day12.py) |
 | 13 | [Transparent Origami](https://adventofcode.com/2021/day/13) | [solution](./day13/day13.py) |
+| 14 | [Extended Polymerization](https://adventofcode.com/2021/day/14) | [solution](./day14/day14.py) |
 
-Last updated: 13/12/2021, 10:26:16
+Last updated: 14/12/2021, 19:00:33
