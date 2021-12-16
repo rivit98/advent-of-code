@@ -18,5 +18,6 @@
 | 13 | [Transparent Origami](https://adventofcode.com/2021/day/13) | [solution](./day13/day13.py) |
 | 14 | [Extended Polymerization](https://adventofcode.com/2021/day/14) | [solution](./day14/day14.py) |
 | 15 | [Chiton](https://adventofcode.com/2021/day/15) | [solution](./day15/day15.py) |
+| 16 | [Packet Decoder](https://adventofcode.com/2021/day/16) | [solution](./day16/day16.py) |
 
-Last updated: 15/12/2021, 21:14:46
+Last updated: 16/12/2021, 20:22:15
