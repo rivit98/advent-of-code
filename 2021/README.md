@@ -20,5 +20,6 @@
 | 15 | [Chiton](https://adventofcode.com/2021/day/15) | [solution](./day15/day15.py) |
 | 16 | [Packet Decoder](https://adventofcode.com/2021/day/16) | [solution](./day16/day16.py) |
 | 17 | [Trick Shot](https://adventofcode.com/2021/day/17) | [solution](./day17/day17.py) |
+| 18 | [Snailfish](https://adventofcode.com/2021/day/18) | [solution](./day18/day18.py) |
 
-Last updated: 20/12/2021, 21:06:45
+Last updated: 26/12/2021, 12:08:06
