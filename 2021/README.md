@@ -21,5 +21,6 @@
 | 16 | [Packet Decoder](https://adventofcode.com/2021/day/16) | [solution](./day16/day16.py) |
 | 17 | [Trick Shot](https://adventofcode.com/2021/day/17) | [solution](./day17/day17.py) |
 | 18 | [Snailfish](https://adventofcode.com/2021/day/18) | [solution](./day18/day18.py) |
+| 19 | [Beacon Scanner](https://adventofcode.com/2021/day/19) | [solution](./day19/d19.py) |
 
-Last updated: 26/12/2021, 12:08:06
+Last updated: 02/01/2022, 09:50:55
