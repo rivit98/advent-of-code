@@ -22,5 +22,6 @@
 | 17 | [Trick Shot](https://adventofcode.com/2021/day/17) | [solution](./day17/day17.py) |
 | 18 | [Snailfish](https://adventofcode.com/2021/day/18) | [solution](./day18/day18.py) |
 | 19 | [Beacon Scanner](https://adventofcode.com/2021/day/19) | [solution](./day19/d19.py) |
+| 20 | [Trench Map](https://adventofcode.com/2021/day/20) | [solution](./day20/d20.py) |
 
-Last updated: 02/01/2022, 09:50:55
+Last updated: 02/01/2022, 13:34:04
