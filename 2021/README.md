@@ -24,5 +24,6 @@
 | 19 | [Beacon Scanner](https://adventofcode.com/2021/day/19) | [solution](./day19/d19.py) |
 | 20 | [Trench Map](https://adventofcode.com/2021/day/20) | [solution](./day20/d20.py) |
 | 21 | [Dirac Dice](https://adventofcode.com/2021/day/21) | [solution](./day21/d21.py) |
+| 22 | [Reactor Reboot](https://adventofcode.com/2021/day/22) | [solution](./day22/day22.py) |
 
-Last updated: 02/01/2022, 18:49:20
+Last updated: 06/01/2022, 21:10:59
