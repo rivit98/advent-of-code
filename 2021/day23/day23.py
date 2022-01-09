@@ -24,12 +24,6 @@ class Room:
             if was_successful:
                 self.locked_idx -= 1
 
-    def __iter__(self):
-        return iter(self.space)
-
-    def __len__(self):
-        return len(self.space)
-
     @property
     def is_finished(self):
         return self.locked_idx == 0
