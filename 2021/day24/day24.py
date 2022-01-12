@@ -1,4 +1,4 @@
-from z3 import Ints, Optimize
+from z3 import Solver, Ints, Optimize
 
 def create_optimizer():
     s = Optimize()

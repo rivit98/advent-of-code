@@ -26,5 +26,7 @@
 | 21 | [Dirac Dice](https://adventofcode.com/2021/day/21) | [solution](./day21/d21.py) |
 | 22 | [Reactor Reboot](https://adventofcode.com/2021/day/22) | [solution](./day22/day22.py) |
 | 23 | [Amphipod](https://adventofcode.com/2021/day/23) | [solution](./day23/day23.py) |
+| 24 | [Arithmetic Logic Unit](https://adventofcode.com/2021/day/24) | [solution](./day24/day24.py) |
+| 25 | [Sea Cucumber](https://adventofcode.com/2021/day/25) | [solution](./day25/d25.py) |
 
-Last updated: 09/01/2022, 01:53:14
+Last updated: 12/01/2022, 22:39:16
