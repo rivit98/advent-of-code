@@ -1,0 +1,182 @@
+
+w = w1
+x = z % 26
+z /= 1
+x += 11
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 16
+y *= x
+z += y
+
+w = w2
+x = z % 26
+z /= 1
+x += 12
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 11
+y *= x
+z += y
+
+w = w3
+x = z % 26
+z /= 1
+x += 13
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 12
+y *= x
+z += y
+
+w = w4
+x = z % 26
+z /= 26
+x += -5
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 12
+y *= x
+z += y
+
+w = w5
+x = z % 26
+z /= 26
+x += -3
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 12
+y *= x
+z += y
+
+w = w6
+x = z % 26
+z /= 1
+x += 14
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 2
+y *= x
+z += y
+
+w = w7
+x = z % 26
+z /= 1
+x += 15
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 11
+y *= x
+z += y
+
+w = w8
+x = z % 26
+z /= 26
+x += -16
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 4
+y *= x
+z += y
+
+w = w9
+x = z % 26
+z /= 1
+x += 14
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 12
+y *= x
+z += y
+
+w = w10
+x = z % 26
+z /= 1
+x += 15
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 9
+y *= x
+z += y
+
+w = w11
+x = z % 26
+z /= 26
+x += -7
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 10
+y *= x
+z += y
+
+w = w12
+x = z % 26
+z /= 26
+x += -11
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 11
+y *= x
+z += y
+
+w = w13
+x = z % 26
+z /= 26
+x += -6
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 6
+y *= x
+z += y
+
+w = w14
+x = z % 26
+z /= 26
+x += -11
+x = x != w
+y = 25
+y *= x
+y += 1
+z *= y
+y = w + 15
+y *= x
+z += y
