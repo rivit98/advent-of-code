@@ -1,0 +1,10 @@
+[Advent of Code {{year}}](https://adventofcode.com/{{year}})
+==========
+
+| Day | Challenge | Solution |
+|:---:|:---|:---:|
+{%- for chall in solved_challs %}
+| {{ chall.day }} | [{{ chall.name }}]({{ chall.link }}) | [solution]({{ chall.solution }}) |
+{%- endfor %}
+
+Last updated: {{ last_updated }}
