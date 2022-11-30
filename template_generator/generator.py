@@ -112,7 +112,6 @@ def build_editions():
             Edition(int(yf), len(challenge_folders), 25)
         )
 
-
     return sorted(editions, key=lambda e: e.year, reverse=True)
 
 
