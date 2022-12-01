@@ -3,5 +3,6 @@
 
 | Day | Challenge | Solution |
 |:---:|:---|:---:|
+| 1 | [Calorie Counting](https://adventofcode.com/2022/day/1) | [solution](day01/day01.rs) |
 
-Last updated: 30/11/2022, 20:51:54
+Last updated: 01/12/2022, 10:19:07
