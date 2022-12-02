@@ -105,7 +105,7 @@ def build_editions():
     year_folders = [directory for directory in Path('.').iterdir() if directory.is_dir() and directory.name.isnumeric()]
     editions = []
     for yf_path in year_folders:
-        challenge_folders = [name for name in os.listdir(yf_path) if os.path.isdir(os.path.join(yf_path, name))]
+        challenge_folders = [directory for directory in yf_path.iterdir() if directory.is_dir() and directory.name.startswith("day")]
         editions.append(
             Edition(int(yf_path.name), len(challenge_folders), 25)
         )
