@@ -26,7 +26,7 @@ def save_cache(cache):
 
 
 def save_file(path, data):
-    Path(path).write_text(data)
+    Path(path).write_text(data, newline='\n')
 
 
 def load_template(path):
@@ -79,16 +79,16 @@ def create_challenge_entry(chall_id):
         chall_id,
         title,
         link,
-        Path(f'./day{chall_id:02}/{filename}')
+        f'./day{chall_id:02}/{filename}'
     )
 
 
 def build_challenges():
     cached = load_cache()
-    challenge_folders = [directory for directory in Path(config.folder).iterdir() if directory.is_dir()]
-    challenge_folders = sorted(filter(lambda s: s.name.startswith('day'), challenge_folders))
+    challenge_folders = [directory for directory in Path(config.folder).iterdir() if directory.is_dir() and directory.name.startswith('day')]
+    challenge_folders = list(map(lambda s: int(s.name.removeprefix('day')), challenge_folders))
     out_challs = []
-    for day_number, challenge_id in enumerate(challenge_folders, 1):
+    for day_number in sorted(challenge_folders):
         chall = cached.get(day_number)
         if chall:
             out_challs.append(chall)
