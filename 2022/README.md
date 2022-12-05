@@ -7,5 +7,6 @@
 | 2 | [Rock Paper Scissors](https://adventofcode.com/2022/day/2) | [solution](./day02/day02.rs) |
 | 3 | [Rucksack Reorganization](https://adventofcode.com/2022/day/3) | [solution](./day03/day03.rs) |
 | 4 | [Camp Cleanup](https://adventofcode.com/2022/day/4) | [solution](./day04/day04.rs) |
+| 5 | [Supply Stacks](https://adventofcode.com/2022/day/5) | [solution](./day05/day05.rs) |
 
-Last updated: 04/12/2022, 11:43:25
+Last updated: 05/12/2022, 21:29:50
