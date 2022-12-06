@@ -8,5 +8,6 @@
 | 3 | [Rucksack Reorganization](https://adventofcode.com/2022/day/3) | [solution](./day03/day03.rs) |
 | 4 | [Camp Cleanup](https://adventofcode.com/2022/day/4) | [solution](./day04/day04.rs) |
 | 5 | [Supply Stacks](https://adventofcode.com/2022/day/5) | [solution](./day05/day05.rs) |
+| 6 | [Tuning Trouble](https://adventofcode.com/2022/day/6) | [solution](./day06/day06.rs) |
 
-Last updated: 05/12/2022, 21:29:50
+Last updated: 06/12/2022, 08:21:09
