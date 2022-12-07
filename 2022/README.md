@@ -9,5 +9,6 @@
 | 4 | [Camp Cleanup](https://adventofcode.com/2022/day/4) | [solution](./day04/day04.rs) |
 | 5 | [Supply Stacks](https://adventofcode.com/2022/day/5) | [solution](./day05/day05.rs) |
 | 6 | [Tuning Trouble](https://adventofcode.com/2022/day/6) | [solution](./day06/day06.rs) |
+| 7 | [No Space Left On Device](https://adventofcode.com/2022/day/7) | [solution](./day07/day07.rs) |
 
-Last updated: 06/12/2022, 08:21:09
+Last updated: 07/12/2022, 11:20:19
