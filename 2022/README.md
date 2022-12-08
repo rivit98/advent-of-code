@@ -10,5 +10,6 @@
 | 5 | [Supply Stacks](https://adventofcode.com/2022/day/5) | [solution](./day05/day05.rs) |
 | 6 | [Tuning Trouble](https://adventofcode.com/2022/day/6) | [solution](./day06/day06.rs) |
 | 7 | [No Space Left On Device](https://adventofcode.com/2022/day/7) | [solution](./day07/day07.rs) |
+| 8 | [Treetop Tree House](https://adventofcode.com/2022/day/8) | [solution](./day08/day08.rs) |
 
-Last updated: 07/12/2022, 11:20:19
+Last updated: 08/12/2022, 15:44:54
