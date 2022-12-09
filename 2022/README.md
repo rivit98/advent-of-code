@@ -11,5 +11,6 @@
 | 6 | [Tuning Trouble](https://adventofcode.com/2022/day/6) | [solution](./day06/day06.rs) |
 | 7 | [No Space Left On Device](https://adventofcode.com/2022/day/7) | [solution](./day07/day07.rs) |
 | 8 | [Treetop Tree House](https://adventofcode.com/2022/day/8) | [solution](./day08/day08.rs) |
+| 9 | [Rope Bridge](https://adventofcode.com/2022/day/9) | [solution](./day09/day09.rs) |
 
-Last updated: 08/12/2022, 15:44:54
+Last updated: 11/12/2022, 21:28:40
