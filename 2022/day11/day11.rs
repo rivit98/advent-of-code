@@ -1,5 +1,6 @@
 use std::{collections::HashMap, vec};
 
+#[derive(Clone)]
 struct Item {
     val: usize,
     vals: HashMap<usize, usize>,
@@ -8,31 +9,22 @@ struct Item {
 impl Item {
     pub fn new(val: usize) -> Self {
         Item {
-            val: val,
+            val,
             vals: HashMap::new(),
         }
     }
-    pub fn from_vals(vals: HashMap<usize, usize>) -> Self {
-        Item {
-            val: 0,
-            vals: vals,
-        }
-    }
-
-    fn update(&mut self, val: usize, divisors: &Vec<usize>) {
-        self.vals = HashMap::from_iter(
-            divisors.iter().map(|&divisor| (divisor, val % divisor))
-        )
-    }
 }
 
+#[derive(Clone)]
 struct Test {
     div: usize,
     test_true: usize,
     test_false: usize,
 }
 
+#[derive(Clone)]
 struct Monkey<'a> {
+    id: usize,
     items: Vec<Item>,
     op_tok: Vec<&'a str>,
     test: Test,
@@ -47,10 +39,10 @@ impl<'a> Monkey<'a> {
         return if self.op_tok[1] == "+" { a + b } else {a * b};
     }
     fn dest(&self, worry_level: usize) -> usize {
-        if worry_level % self.test.div == 0 {
-            return self.test.test_true;
+        return if worry_level % self.test.div == 0 {
+            self.test.test_true
         } else {
-            return self.test.test_false;
+            self.test.test_false
         }
     }
 }
@@ -60,19 +52,18 @@ fn main() {
         .split("\n\n")
         .collect();
 
-    let mut monkeys: Vec<Monkey> = data.iter()
+    let monkeys: Vec<Monkey> = data.iter()
         .map(|chunk| {
             let lines: Vec<&str> = chunk.lines().collect();
             let starting_items: Vec<Item> = lines[1].split_once(':').unwrap().1.split(",")
                 .map(|x| x.trim().parse::<usize>().unwrap())
                 .map(|x| Item::new(x))
                 .collect();
-            
-            let operands: Vec<&str> = lines[2].split_once('=').unwrap().1.split_whitespace().collect();
 
-            Monkey { 
+            Monkey {
+                id: lines[0].split_whitespace().last().unwrap().trim_end_matches(":").parse::<usize>().unwrap(),
                 items: starting_items, 
-                op_tok: operands, 
+                op_tok: lines[2].split_once('=').unwrap().1.split_whitespace().collect(),
                 test: Test {
                     div: lines[3].split_whitespace().last().unwrap().parse::<usize>().unwrap(),
                     test_true: lines[4].split_whitespace().last().unwrap().parse::<usize>().unwrap(),
@@ -82,53 +73,72 @@ fn main() {
             }
         })
         .collect();
-    
-    for _ in 1..=20 {
-        for midx in 0..monkeys.len() {
-            for idx in 0..monkeys[midx].items.len() {
-                monkeys[midx].inspections += 1;
-                let item = &monkeys[midx].items[idx];
-                let new_worry_level = monkeys[midx].operate(item.val) / 3;
-                let target = monkeys[midx].dest(new_worry_level);
-                monkeys[target].items.push(Item::new(new_worry_level));
-            }
 
-            monkeys[midx].items.clear();
-        }
+    let mut monkeys1 = monkeys.clone();
+    let mut new_items: Vec<Vec<Item>> = vec![vec![]; monkeys1.len()];
+    for _ in 1..=20 {
+        monkeys1.iter_mut().enumerate().for_each(|(midx, m)| {
+            m.items.append(&mut new_items[midx]);
+
+            m.items.iter()
+                .map(|item| item.val)
+                .collect::<Vec<usize>>()
+                .drain(..)
+                .for_each(|item| {
+                    m.inspections += 1;
+                    let new_worry_level = m.operate(item) / 3;
+                    let target = m.dest(new_worry_level);
+                    new_items[target].push(Item::new(new_worry_level));
+            });
+
+            m.items.clear();
+        });
     }
 
-    let mut part1: Vec<usize> = monkeys.iter().map(|m| m.inspections).collect();
+    let mut part1: Vec<usize> = monkeys1.iter().map(|m| m.inspections).collect();
     part1.sort();
     println!("part1 {}", part1.iter().rev().take(2).product::<usize>());
 
+
+    let mut monkeys2 = monkeys.clone();
     let divisors: Vec<usize> = monkeys.iter().map(|m| m.test.div).collect();
 
-    // monkeys.iter_mut().for_each(|m| {
-    //     m.items = m.items.iter()
-    //     .map(|item| {
-    //         let vals = HashMap::from_iter(
-    //             divisors.iter().map(|&divisor| (divisor, item.val % divisor)).collect::<Vec<(usize, usize)>>()
-    //         );
-    //         return Item::from_vals(vals);
-    //     })
-    //     .collect();
-    // });
+    monkeys2.iter_mut()
+        .flat_map(|m| m.items.iter_mut())
+        .for_each(|item| {
+            item.vals = HashMap::from_iter(divisors.iter().map(|&x| (x, item.val % x)));
+        });
+    let mut new_items: Vec<Vec<Item>> = vec![vec![]; monkeys2.len()];
 
-    for _ in 1..=20 {
-        for midx in 0..monkeys.len() {
-            for idx in 0..monkeys[midx].items.len() {
-                monkeys[midx].inspections += 1;
+    for _ in 1..=10000 {
+        monkeys2.iter_mut()
+            .enumerate()
+            .for_each(|(midx, m)| {
+                m.items.append(&mut new_items[midx]);
 
-                let item = &monkeys[midx].items[idx];
-                let item_val = *item.vals.get(&monkeys[midx].test.div).unwrap();
-                let new_worry_level = monkeys[midx].operate(item_val);
-                item.update(new_worry_level, &divisors);
-                let target = monkeys[midx].dest(*item.vals.get(&monkeys[midx].test.div).unwrap());
-                monkeys[target].items.push(Item::new(new_worry_level));
-            }
+                m.items
+                    .clone()
+                    .drain(..)
+                    .into_iter()
+                    .for_each(|mut item| {
+                        m.inspections += 1;
 
-            monkeys[midx].items.clear();
-        }
+                        item.vals.iter_mut().for_each(|(k, v)| {
+                            let new_val = m.operate(*v);
+                            *v = new_val % k;
+                        });
+
+                        let new_worry_level = *item.vals.get(&m.test.div).unwrap();
+                        let target = m.dest(new_worry_level);
+                        new_items[target].push(item);
+                    });
+
+                m.items.clear();
+            });
     }
+
+    let mut part2: Vec<usize> = monkeys2.iter().map(|m| m.inspections).collect();
+    part2.sort();
+    println!("part1 {}", part2.iter().rev().take(2).product::<usize>());
 }
 

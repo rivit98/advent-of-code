@@ -12,5 +12,7 @@
 | 7 | [No Space Left On Device](https://adventofcode.com/2022/day/7) | [solution](./day07/day07.rs) |
 | 8 | [Treetop Tree House](https://adventofcode.com/2022/day/8) | [solution](./day08/day08.rs) |
 | 9 | [Rope Bridge](https://adventofcode.com/2022/day/9) | [solution](./day09/day09.rs) |
+| 10 | [Cathode-Ray Tube](https://adventofcode.com/2022/day/10) | [solution](./day10/day10.rs) |
+| 11 | [Monkey in the Middle](https://adventofcode.com/2022/day/11) | [solution](./day11/day11.rs) |
 
-Last updated: 11/12/2022, 21:28:40
+Last updated: 13/12/2022, 19:23:13
