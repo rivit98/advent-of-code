@@ -39,15 +39,13 @@ fn parse_pair(iter: &mut Iter<char>) -> Item{
             },
             ']' => {
                 if chars.len() > 0 {
-                    curr.l.push(Item::from_val(chars.iter().collect::<String>().parse::<u32>().unwrap()));
-                    chars.clear();
+                    curr.l.push(Item::from_val(chars.drain(..).collect::<String>().parse::<u32>().unwrap()));
                 }
                 return curr;
             },
             ',' => {
                 if chars.len() > 0 {
-                    curr.l.push(Item::from_val(chars.iter().collect::<String>().parse::<u32>().unwrap()));
-                    chars.clear();
+                    curr.l.push(Item::from_val(chars.drain(..).collect::<String>().parse::<u32>().unwrap()));
                 }
                 continue
             },
@@ -57,8 +55,7 @@ fn parse_pair(iter: &mut Iter<char>) -> Item{
         }
     }
     if chars.len() > 0 {
-        curr.l.push(Item::from_val(chars.iter().collect::<String>().parse::<u32>().unwrap()));
-        chars.clear();
+        curr.l.push(Item::from_val(chars.drain(..).collect::<String>().parse::<u32>().unwrap()));
     }
     curr
 }
