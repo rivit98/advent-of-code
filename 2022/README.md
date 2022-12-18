@@ -17,5 +17,6 @@
 | 12 | [Hill Climbing Algorithm](https://adventofcode.com/2022/day/12) | [solution](./day12/day12.rs) |
 | 13 | [Distress Signal](https://adventofcode.com/2022/day/13) | [solution](./day13/day13.rs) |
 | 14 | [Regolith Reservoir](https://adventofcode.com/2022/day/14) | [solution](./day14/day14.rs) |
+| 15 | [Beacon Exclusion Zone](https://adventofcode.com/2022/day/15) | [solution](./day15/day15.rs) |
 
-Last updated: 18/12/2022, 15:20:08
+Last updated: 18/12/2022, 20:41:38
