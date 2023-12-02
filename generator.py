@@ -94,11 +94,17 @@ def build_challenges():
         if chall:
             out_challs.append(chall)
         else:
-            chall = create_challenge_entry(day_number)
+            try:
+                chall = create_challenge_entry(day_number)
+            except Exception as e:
+                break
+
             out_challs.append(chall)
             cached[day_number] = chall
 
     save_cache(cached)
+    print(cached)
+    print(out_challs)
     return out_challs
 
 
@@ -106,7 +112,7 @@ def build_editions():
     year_folders = [directory for directory in Path('.').iterdir() if directory.is_dir() and directory.name.isnumeric()]
     editions = []
     for yf_path in year_folders:
-        challenge_folders = [directory for directory in yf_path.iterdir() if directory.is_dir() and directory.name.startswith("day")]
+        challenge_folders = [directory for directory in yf_path.iterdir() if directory.is_dir() and directory.name.startswith("day") and any(directory.iterdir())]
         editions.append(
             Edition(int(yf_path.name), len(challenge_folders), 25)
         )
