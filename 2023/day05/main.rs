@@ -1,4 +1,3 @@
-use std::cmp::{min};
 use std::ops::Range;
 
 fn intersection(r1: &Range<u64>, r2: &Range<u64>) -> Option<Range<u64>> {
@@ -38,13 +37,15 @@ fn main() {
 
 
 
-    let current_stages: Vec<(Range<u64>, u64)> = vec![];
-    for stage_pair in stages.windows(2) {
-        let stage1 = &stage_pair[0];
-        let stage2 = &stage_pair[1];
+    let mut current_stages: Vec<Range<u64>> = stages[0].iter()
+        .map(|(dest, src, _)| dest.clone())
+        .collect();
 
-        // what if intersection is not full?
-        for (dest, _, _) in stage1 {
+    println!("{current_stages:?}");
+
+    for stage2 in stages.iter().skip(1) {
+        let mut new_current_stages: Vec<Range<u64>> = vec![];
+        for dest in current_stages.iter() {
             for (dest2, src2, _) in stage2 {
                 println!("{dest:?} -> {src2:?} -> {dest2:?}");
                 let a = intersection(dest, src2);
@@ -54,28 +55,38 @@ fn main() {
                         let is = intersection.start;
                         let ie = intersection.end;
 
-                        // intersection can be directly mapped to dest2
-                        let off = is - dest.start;
-                        let len = ie - is;
-                        let mapped_range = dest2.start + off .. dest2.start + off + len;
+                        // [src2.start; is) [is; ie) [ie; src2.end)
+                        let pre = src2.start..is;
+                        let pre_len = pre.end - pre.start;
+                        let post = ie..src2.end;
+                        let post_len = post.end - post.start;
 
-                        println!(" intersection {intersection:?} |  {off} {len} {mapped_range:?}");
-                        let left_rest = dest.start .. intersection.start;
-                        let right_rest = intersection.end .. dest.end;
-                        let left_cnt = left_rest.end - left_rest.start;
-                        let right_cnt = right_rest.end - right_rest.start;
-                        println!(" rest: {left_rest:?} | {right_rest:?}");
-                        // if not mapped then what?
+                        println!(" pre: {pre:?}   matched: {intersection:?}   post: {post:?}");
+                        if pre_len > 0 {
+                            new_current_stages.push(pre);
+                        }
+
+                        if post_len > 0 {
+                            new_current_stages.push(post);
+                        }
+
+                        new_current_stages.push(intersection);
+
+                        let mapping_pre = dest2.start.. dest2.start + pre_len;
+                        let mapping = dest2.start + pre_len .. dest2.end - post_len;
+                        let mapping_post = dest2.end - post_len .. dest2.end;
+                        println!(" mapping_pre: {mapping_pre:?}  mapping: {mapping:?}  mapping_post: {mapping_post:?}")
                     },
                     None => {
                         // if no mapping then skip totally
                     }
                 };
             }
+            println!("{new_current_stages:?}");
             println!("");
         }
-        // break;
         println!("");
+        current_stages = new_current_stages;
     }
 
 }
