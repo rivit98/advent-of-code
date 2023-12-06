@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 import json
 import datetime
+from dataclasses import dataclass
 from pathlib import Path
+from pygments.lexers import get_lexer_for_filename
 
 import requests
 import os
@@ -33,13 +35,13 @@ def save_file(path, data):
 def load_template(path):
     return Template(Path(path).read_text())
 
-
+@dataclass
 class Challenge:
-    def __init__(self, day, name, link, solution):
-        self.day = day
-        self.name = name
-        self.link = link
-        self.solution = solution
+    day: int
+    name: str
+    lang: str
+    link: str
+    solution: str
 
     def toJSON(self):
         return json.dumps(self, default=lambda o: o.__dict__, sort_keys=True, indent=4)
@@ -57,7 +59,7 @@ def find_solve_file(chall_id):
     ALLOWED_EXTENSIONS = ['.py', '.rs', '.go', '.c', '.cpp']
     for fname in os.listdir(f'{config.folder}/day{chall_id:02}'):
         if any(fname.endswith(x) for x in ALLOWED_EXTENSIONS):
-            return fname
+            return fname, get_lexer_for_filename(fname).name
 
 
 def create_challenge_entry(chall_id):
@@ -74,11 +76,12 @@ def create_challenge_entry(chall_id):
     header_text = header[0].text
     match = re.search(title_extraction_regex, header_text)
     title = match.group(1)
-    filename = find_solve_file(chall_id)
+    filename, lang = find_solve_file(chall_id)
 
     return Challenge(
         chall_id,
         title,
+        lang,
         link,
         f'./day{chall_id:02}/{filename}'
     )
@@ -103,8 +106,6 @@ def build_challenges():
             cached[day_number] = chall
 
     save_cache(cached)
-    print(cached)
-    print(out_challs)
     return out_challs
 
 
