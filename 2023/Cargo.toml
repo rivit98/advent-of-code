@@ -24,6 +24,9 @@ path = "day04/main.rs"
 name = "day06"
 path = "day06/main.rs"
 
+[[bin]]
+name = "day07"
+path = "day07/main.rs"
 
 [dependencies]
 regex = "1.10.2"
