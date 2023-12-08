@@ -61,9 +61,7 @@ def find_solve_file(chall_id):
         if any(fname.endswith(x) for x in ALLOWED_EXTENSIONS):
             return fname, get_lexer_for_filename(fname).name
 
-
-def create_challenge_entry(chall_id):
-    link = config.format_link.format(chall_id)
+def scrap_chall_name(link):
     print("Downloading title from: " + link)
     request = requests.get(link)
     soup = BeautifulSoup(request.content, 'html.parser')
@@ -76,15 +74,7 @@ def create_challenge_entry(chall_id):
     header_text = header[0].text
     match = re.search(title_extraction_regex, header_text)
     title = match.group(1)
-    filename, lang = find_solve_file(chall_id)
-
-    return Challenge(
-        chall_id,
-        title,
-        lang,
-        link,
-        f'./day{chall_id:02}/{filename}'
-    )
+    return title
 
 
 def build_challenges():
@@ -93,17 +83,22 @@ def build_challenges():
     challenge_folders = list(map(lambda s: int(s.name.removeprefix('day')), challenge_folders))
     out_challs = []
     for day_number in sorted(challenge_folders):
-        chall = cached.get(day_number)
-        if chall:
-            out_challs.append(chall)
-        else:
-            try:
-                chall = create_challenge_entry(day_number)
-            except Exception as e:
-                break
+        try:
+            link = config.format_link.format(day_number)
+            filename, lang = find_solve_file(day_number)
+            name = cached.get(day_number) or scrap_chall_name(link)
+            chall = Challenge(
+                day_number,
+                name,
+                lang,
+                link,
+                f'./day{day_number:02}/{filename}'
+            )
+        except Exception as e:
+            break
 
-            out_challs.append(chall)
-            cached[day_number] = chall
+        out_challs.append(chall)
+        cached[day_number] = name
 
     save_cache(cached)
     return out_challs
