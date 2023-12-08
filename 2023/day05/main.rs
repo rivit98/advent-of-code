@@ -1,92 +1,85 @@
 use std::ops::Range;
 
-fn intersection(r1: &Range<u64>, r2: &Range<u64>) -> Option<Range<u64>> {
+
+type R = Range<i64>;
+
+fn intersection(r1: &R, r2: &R) -> Option<R> {
     let start = r1.start.max(r2.start);
     let end = r1.end.min(r2.end);
 
     if start < end {
-        return Some(start..end)
+        return Some(start..end);
     }
 
-    return None
+    return None;
 }
 
+fn rec(stages: &Vec<Vec<(R,R)>>, current: &R, idx: usize) -> i64 {
+    if idx >= stages.len() {
+        return current.start;
+    }
+
+    let mut to_check = vec![];
+    let mut unused = vec![current.clone()];
+
+    for (src, dst) in &stages[idx] {
+        let mut new_unused = vec![];
+
+        while !unused.is_empty() {
+            let u = unused.pop().unwrap().clone();
+            let diff: i64 = dst.start - src.start;
+            match intersection(&src, &u) {
+                Some(inter) => {
+                    to_check.push(inter.start+diff..inter.end+diff);
+                    new_unused.push(u.start..inter.start);
+                    new_unused.push(inter.end..u.end);
+                },
+                None => new_unused.push(u.clone())
+            }
+        }
+
+        unused = new_unused.into_iter().filter(|r| r.start != r.end).collect();
+    }
+
+    unused.iter().chain(&to_check).map(|r| rec(stages, &r, idx + 1)).min().unwrap()
+}
+
+
 fn main() {
-    let data: Vec<&str>  =include_str!("./t")
+    let data: Vec<&str> = include_str!("./input")
         .split("\n\n")
         .collect();
 
-    let seeds: Vec<u64> = data[0].splitn(2, |c| c == ':')
+    let seeds: Vec<i64> = data[0].splitn(2, |c| c == ':')
         .nth(1)
         .unwrap()
         .split_ascii_whitespace()
-        .map(|token| token.parse::<u64>().unwrap())
+        .map(|token| token.parse::<i64>().unwrap())
         .collect();
 
-    let stages: Vec<Vec<(Range<u64>, Range<u64>, u64)>> = data[1..].iter()
+    let stages: Vec<Vec<(R,R)>> = data[1..].iter()
         .map(|group| {
             group.lines()
                 .skip(1)
                 .map(|line| {
-                    let range: Vec<u64> = line.split_ascii_whitespace().map(|token| token.parse::<u64>().unwrap()).collect();
-                    (range[0]..range[0]+range[2], range[1]..range[1]+range[2], range[2])
+                    let range: Vec<i64> = line.split_ascii_whitespace().map(|token| token.parse::<i64>().unwrap()).collect();
+                    (range[1]..range[1] + range[2], range[0]..range[0] + range[2]) // reverse order so mapping is src->dest
                 })
                 .collect()
         })
         .collect();
 
+    println!("{}", seeds.iter()
+        .map(|&seed| seed..seed+1)
+        .map(|seed| rec(&stages, &seed, 0))
+        .min()
+        .unwrap()
+    );
 
-
-    let mut current_stages: Vec<Range<u64>> = stages[0].iter()
-        .map(|(dest, src, _)| dest.clone())
-        .collect();
-
-    println!("{current_stages:?}");
-
-    for stage2 in stages.iter().skip(1) {
-        let mut new_current_stages: Vec<Range<u64>> = vec![];
-        for dest in current_stages.iter() {
-            for (dest2, src2, _) in stage2 {
-                println!("{dest:?} -> {src2:?} -> {dest2:?}");
-                let a = intersection(dest, src2);
-
-                match a {
-                    Some(intersection) => {
-                        let is = intersection.start;
-                        let ie = intersection.end;
-
-                        // [src2.start; is) [is; ie) [ie; src2.end)
-                        let pre = src2.start..is;
-                        let pre_len = pre.end - pre.start;
-                        let post = ie..src2.end;
-                        let post_len = post.end - post.start;
-
-                        println!(" pre: {pre:?}   matched: {intersection:?}   post: {post:?}");
-                        if pre_len > 0 {
-                            new_current_stages.push(pre);
-                        }
-
-                        if post_len > 0 {
-                            new_current_stages.push(post);
-                        }
-
-                        new_current_stages.push(intersection);
-
-                        let mapping_pre = dest2.start.. dest2.start + pre_len;
-                        let mapping = dest2.start + pre_len .. dest2.end - post_len;
-                        let mapping_post = dest2.end - post_len .. dest2.end;
-                        println!(" mapping_pre: {mapping_pre:?}  mapping: {mapping:?}  mapping_post: {mapping_post:?}")
-                    },
-                    None => {
-                        // if no mapping then skip totally
-                    }
-                };
-            }
-            println!("{new_current_stages:?}");
-            println!("");
-        }
-        println!("");
-        current_stages = new_current_stages;
-    }
-
+    println!("{}", seeds.chunks(2)
+        .map(|chunk| chunk[0]..chunk[0]+chunk[1])
+        .map(|seed| rec(&stages, &seed, 0))
+        .min()
+        .unwrap()
+    );
 }
