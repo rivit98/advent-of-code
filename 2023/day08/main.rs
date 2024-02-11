@@ -36,22 +36,6 @@ fn main() {
     })
         .collect();
 
-    // let mut part1 = 0;
-    // let mut midx = 0;
-    // let mut current = "AAA";
-    // while current != "ZZZ" {
-    //     let m = moves[midx];
-    //     part1 += 1;
-    //     let opt = map.get(&current).unwrap();
-    //     current = opt[m];
-    //
-    //     midx += 1;
-    //     midx %= moves.len();
-    // }
-
-
-    // println!("part1 {part1}");
-
     let mut midx = 0;
     let mut steps = 0;
     let mut current_nodes: Vec<Trace> = map.keys()
