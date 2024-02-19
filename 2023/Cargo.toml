@@ -11,7 +11,6 @@ path = "day01/main.rs"
 name = "day02"
 path = "day02/main.rs"
 
-
 [[bin]]
 name = "day03"
 path = "day03/main.rs"
@@ -35,6 +34,14 @@ path = "day07/main.rs"
 [[bin]]
 name = "day08"
 path = "day08/main.rs"
+
+[[bin]]
+name = "day09"
+path = "day09/main.rs"
+
+[[bin]]
+name = "day10"
+path = "day10/main.rs"
 
 [dependencies]
 regex = "1.10.2"
