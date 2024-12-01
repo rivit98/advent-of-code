@@ -1,0 +1,109 @@
+[package]
+name = "y2024"
+version = "0.1.0"
+edition = "2021"
+
+
+[[bin]]
+name = "day01"
+path = "day01/main.rs"
+
+#[[bin]]
+#name = "day02"
+#path = "day02/main.rs"
+#
+#[[bin]]
+#name = "day03"
+#path = "day03/main.rs"
+#
+#[[bin]]
+#name = "day04"
+#path = "day04/main.rs"
+#
+#[[bin]]
+#name = "day05"
+#path = "day05/main.rs"
+#
+#[[bin]]
+#name = "day06"
+#path = "day06/main.rs"
+#
+#[[bin]]
+#name = "day07"
+#path = "day07/main.rs"
+#
+#[[bin]]
+#name = "day08"
+#path = "day08/main.rs"
+#
+#[[bin]]
+#name = "day09"
+#path = "day09/main.rs"
+#
+#[[bin]]
+#name = "day10"
+#path = "day10/main.rs"
+#
+#[[bin]]
+#name = "day11"
+#path = "day11/main.rs"
+#
+#[[bin]]
+#name = "day12"
+#path = "day12/main.rs"
+#
+#[[bin]]
+#name = "day13"
+#path = "day13/main.rs"
+#
+#[[bin]]
+#name = "day14"
+#path = "day14/main.rs"
+#
+#[[bin]]
+#name = "day15"
+#path = "day15/main.rs"
+#
+#[[bin]]
+#name = "day16"
+#path = "day16/main.rs"
+#
+#[[bin]]
+#name = "day17"
+#path = "day17/main.rs"
+#
+#[[bin]]
+#name = "day18"
+#path = "day18/main.rs"
+#
+#[[bin]]
+#name = "day19"
+#path = "day19/main.rs"
+#
+#[[bin]]
+#name = "day20"
+#path = "day20/main.rs"
+#
+#[[bin]]
+#name = "day21"
+#path = "day21/main.rs"
+#
+#[[bin]]
+#name = "day22"
+#path = "day22/main.rs"
+#
+#[[bin]]
+#name = "day23"
+#path = "day23/main.rs"
+#
+#[[bin]]
+#name = "day24"
+#path = "day24/main.rs"
+#
+#[[bin]]
+#name = "day25"
+#path = "day25/main.rs"
+
+
+
+[dependencies]
