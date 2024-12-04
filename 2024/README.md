@@ -4,5 +4,8 @@
 | Day | Challenge | Solution |
 |:---:|:---|:---:|
 | 1 | [Historian Hysteria](https://adventofcode.com/2024/day/1) | [Rust](./day01/main.rs) |
+| 2 | [Red-Nosed Reports](https://adventofcode.com/2024/day/2) | [Rust](./day02/main.rs) |
+| 3 | [Mull It Over](https://adventofcode.com/2024/day/3) | [Rust](./day03/main.rs) |
+| 4 | [Ceres Search](https://adventofcode.com/2024/day/4) | [Rust](./day04/main.rs) |
 
-Last updated: 01/12/2024, 12:34:50
+Last updated: 04/12/2024, 23:46:02
