@@ -8,5 +8,6 @@
 | 3 | [Mull It Over](https://adventofcode.com/2024/day/3) | [Rust](./day03/main.rs) |
 | 4 | [Ceres Search](https://adventofcode.com/2024/day/4) | [Rust](./day04/main.rs) |
 | 5 | [Print Queue](https://adventofcode.com/2024/day/5) | [Rust](./day05/main.rs) |
+| 6 | [Guard Gallivant](https://adventofcode.com/2024/day/6) | [Rust](./day06/main.rs) |
 
-Last updated: 05/12/2024, 23:00:24
+Last updated: 07/12/2024, 00:07:19
