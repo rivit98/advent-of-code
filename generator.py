@@ -117,12 +117,10 @@ def build_editions():
 
 
 def main():
-    cur_date = datetime.datetime.now().strftime("%d/%m/%Y, %H:%M:%S")
     challs = build_challenges()
     rendered = load_template('./templates/template.md.jinja').render(
         year=config.year,
         solved_challs=challs,
-        last_updated=cur_date
     )
 
     save_file(config.folder / "README.md", rendered)
@@ -131,7 +129,6 @@ def main():
     editions = build_editions()
     rendered = load_template('./templates/template_main.md.jinja').render(
         editions=editions,
-        last_updated=cur_date
     )
 
     save_file("README.md", rendered)
