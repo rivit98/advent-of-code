@@ -28,10 +28,10 @@ path = "day05/main.rs"
 name = "day06"
 path = "day06/main.rs"
 
-#[[bin]]
-#name = "day07"
-#path = "day07/main.rs"
-#
+[[bin]]
+name = "day07"
+path = "day07/main.rs"
+
 #[[bin]]
 #name = "day08"
 #path = "day08/main.rs"
