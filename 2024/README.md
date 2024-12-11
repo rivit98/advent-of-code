@@ -12,3 +12,4 @@
 | 7 | [Bridge Repair](https://adventofcode.com/2024/day/7) | [Rust](./day07/main.rs) |
 | 8 | [Resonant Collinearity](https://adventofcode.com/2024/day/8) | [Rust](./day08/main.rs) |
 | 9 | [Disk Fragmenter](https://adventofcode.com/2024/day/9) | [Rust](./day09/main.rs) |
+| 10 | [Hoof It](https://adventofcode.com/2024/day/10) | [Rust](./day10/main.rs) |
