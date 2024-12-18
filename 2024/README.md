@@ -14,3 +14,4 @@
 | 9 | [Disk Fragmenter](https://adventofcode.com/2024/day/9) | [Rust](./day09/main.rs) |
 | 10 | [Hoof It](https://adventofcode.com/2024/day/10) | [Rust](./day10/main.rs) |
 | 11 | [Plutonian Pebbles](https://adventofcode.com/2024/day/11) | [Rust](./day11/main.rs) |
+| 12 | [Garden Groups](https://adventofcode.com/2024/day/12) | [Rust](./day12/main.rs) |
