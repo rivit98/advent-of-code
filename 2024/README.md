@@ -15,3 +15,6 @@
 | 10 | [Hoof It](https://adventofcode.com/2024/day/10) | [Rust](./day10/main.rs) |
 | 11 | [Plutonian Pebbles](https://adventofcode.com/2024/day/11) | [Rust](./day11/main.rs) |
 | 12 | [Garden Groups](https://adventofcode.com/2024/day/12) | [Rust](./day12/main.rs) |
+| 13 | [Claw Contraption](https://adventofcode.com/2024/day/13) | [Rust](./day13/main.rs) |
+| 14 | [Restroom Redoubt](https://adventofcode.com/2024/day/14) | [Rust](./day14/main.rs) |
+| 15 | [Warehouse Woes](https://adventofcode.com/2024/day/15) | [Rust](./day15/main.rs) |
