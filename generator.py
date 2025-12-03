@@ -48,10 +48,10 @@ class Challenge:
 
 
 class Edition:
-    def __init__(self, y, completed, total_challs):
+    def __init__(self, y, completed):
         self.year = y
         self.completed = completed
-        self.total = total_challs
+        self.total = 25 if y < 2025 else 12
         self.percent = round((100 * self.completed) / self.total, 2)
 
 
@@ -79,7 +79,10 @@ def scrap_chall_name(link):
 
 def build_challenges():
     cached = load_cache()
-    challenge_folders = [directory for directory in Path(config.folder).iterdir() if directory.is_dir() and directory.name.startswith('day')]
+    challenge_folders = [
+        directory for directory in Path(config.folder).iterdir() 
+        if directory.is_dir() and directory.name.startswith('day')
+    ]
     challenge_folders = list(map(lambda s: int(s.name.removeprefix('day')), challenge_folders))
     out_challs = []
     for day_number in sorted(challenge_folders):
@@ -110,7 +113,7 @@ def build_editions():
     for yf_path in year_folders:
         challenge_folders = [directory for directory in yf_path.iterdir() if directory.is_dir() and directory.name.startswith("day") and any(directory.iterdir())]
         editions.append(
-            Edition(int(yf_path.name), len(challenge_folders), 25)
+            Edition(int(yf_path.name), len(challenge_folders))
         )
 
     return sorted(editions, key=lambda e: e.year, reverse=True)

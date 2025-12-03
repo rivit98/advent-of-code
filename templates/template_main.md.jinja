@@ -3,5 +3,5 @@
 | Year | Solutions | Completed |
 |:---:|:---:|:---:|
 {%- for edition in editions %}
-| {{ edition.year }} | [Solutions](./{{ edition.year }}) | {{edition.completed}}/25 ({{edition.percent}}%) |
+| {{ edition.year }} | [Solutions](./{{ edition.year }}) | {{edition.completed}}/{{edition.total}} ({{edition.percent}}%) |
 {%- endfor %}
