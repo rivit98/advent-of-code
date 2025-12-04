@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 import datetime
+from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 from pygments.lexers import get_lexer_for_filename
@@ -13,19 +14,19 @@ import pickle
 from jinja2 import Template
 from bs4 import BeautifulSoup
 
-config = None
 title_extraction_regex = re.compile(r': (.*) -')
-
+cached = None
+cache_file = ".cache.bin"
 
 def load_cache():
     try:
-        return pickle.loads(Path(config.cache).read_bytes())
+        return pickle.loads(Path(cache_file).read_bytes())
     except:
-        return {}
+        return defaultdict(dict)
 
 
 def save_cache(cache):
-    Path(config.cache).write_bytes(pickle.dumps(cache))
+    Path(cache_file).write_bytes(pickle.dumps(cache))
 
 
 def save_file(path, data):
@@ -48,25 +49,21 @@ class Challenge:
 
 
 class Edition:
-    def __init__(self, y, completed):
+    def __init__(self, edition_dir, y, solution_files):
+        self.dir = edition_dir
         self.year = y
-        self.completed = completed
+        self.completed = len(set([c.day for c in solution_files]))
         self.total = 25 if y < 2025 else 12
         self.percent = round((100 * self.completed) / self.total, 2)
+        self.challenges = solution_files
 
-
-def find_solve_file(chall_id):
-    ALLOWED_EXTENSIONS = ['.py', '.rs', '.go', '.c', '.cpp']
-    for fname in os.listdir(f'{config.folder}/day{chall_id:02}'):
-        if any(fname.endswith(x) for x in ALLOWED_EXTENSIONS):
-            return fname, get_lexer_for_filename(fname).name
 
 def scrap_chall_name(link):
     print("Downloading title from: " + link)
     request = requests.get(link)
     soup = BeautifulSoup(request.content, 'html.parser')
     article = soup.find('article', {"class": "day-desc"})
-    header = article.findChildren("h2", recursive=False)
+    header = article.find_all("h2", recursive=False)
     if not len(header):
         print("downloading data error! h2 not found for: " + link)
         sys.exit(1)
@@ -76,83 +73,79 @@ def scrap_chall_name(link):
     title = match.group(1)
     return title
 
+def is_valid_solution_file(f):
+    sf = str(f)
+    for i in range(1, 26):
+        if f'day{i:02}' in sf or f'day{i}.' in sf or f'd{i}.' in sf:
+            return i
 
-def build_challenges():
-    cached = load_cache()
-    challenge_folders = [
-        directory for directory in Path(config.folder).iterdir() 
-        if directory.is_dir() and directory.name.startswith('day')
-    ]
-    challenge_folders = list(map(lambda s: int(s.name.removeprefix('day')), challenge_folders))
-    out_challs = []
-    for day_number in sorted(challenge_folders):
-        try:
-            link = config.format_link.format(day_number)
-            filename, lang = find_solve_file(day_number)
-            name = cached.get(day_number) or scrap_chall_name(link)
-            chall = Challenge(
-                day_number,
-                name,
-                lang,
-                link,
-                f'./day{day_number:02}/{filename}'
-            )
-        except Exception as e:
-            break
+    return None
 
-        out_challs.append(chall)
-        cached[day_number] = name
+def build_solution(year, f):
+    global cached
 
-    save_cache(cached)
-    return out_challs
+    day_number = is_valid_solution_file(f)
+
+    if day_number is None:
+        raise Exception("Cannot find day number for file: " + str(f))
+
+    try:
+        lang = get_lexer_for_filename(f).name
+        link = f"https://adventofcode.com/{year}/day/{day_number}"
+        name = cached.get(year, {}).get(day_number) or scrap_chall_name(link)
+        chall = Challenge(
+            day_number,
+            name,
+            lang,
+            link,
+            f.relative_to(Path(str(year)))
+        )
+        cached[year][day_number] = name
+        return chall
+    except Exception as e:
+        raise Exception(f"Error building solution for file: {f}: {e}")
 
 
 def build_editions():
     year_folders = [directory for directory in Path('.').iterdir() if directory.is_dir() and directory.name.isnumeric()]
     editions = []
     for yf_path in year_folders:
-        challenge_folders = [directory for directory in yf_path.iterdir() if directory.is_dir() and directory.name.startswith("day") and any(directory.iterdir())]
+        year = int(yf_path.name)
+        files = [f for f in yf_path.glob('**/*') if f.is_file()]
+        files = list(filter(lambda f: f.suffix in ['.py', '.rs', '.go', '.c', '.cpp'], files))
+        files = list(filter(is_valid_solution_file, files))
+
+        solutions = [build_solution(year, f) for f in files]
         editions.append(
-            Edition(int(yf_path.name), len(challenge_folders))
+            Edition(yf_path, year, sorted(solutions, key=lambda c: c.day))
         )
 
     return sorted(editions, key=lambda e: e.year, reverse=True)
 
 
 def main():
-    challs = build_challenges()
-    rendered = load_template('./templates/template.md.jinja').render(
-        year=config.year,
-        solved_challs=challs,
-    )
-
-    save_file(config.folder / "README.md", rendered)
-    print(f"Readme {config.year} generated!")
+    global cached
+    cached = load_cache()
 
     editions = build_editions()
+    for edition in editions:
+        rendered = load_template('./templates/template.md.jinja').render(
+            year=edition.year,
+            solved_challs=edition.challenges,
+        )
+
+        save_file(edition.dir / "README.md", rendered)
+        print(f"Readme {edition.year} generated!")
+
     rendered = load_template('./templates/template_main.md.jinja').render(
         editions=editions,
     )
 
     save_file("README.md", rendered)
-    print(f"Main Readme {config.year} generated!")
+    print(f"Main Readme generated!")
+    save_cache(cached)
 
-
-class Config:
-    def __init__(self, year):
-        self.year = year
-        self.folder = Path(f"./{self.year}")
-        if not self.folder.exists():
-            self.folder.mkdir(parents=True, exist_ok=True)
-
-        self.format_link = f"https://adventofcode.com/{self.year}/day/{{}}"
-        self.cache = self.folder / ".cache.bin"
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 1:
-        config = Config(datetime.datetime.now().year)
-    else:
-        config = Config(int(sys.argv[1]))
-
     main()
