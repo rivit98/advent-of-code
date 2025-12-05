@@ -7,3 +7,4 @@
 | 2 | [Gift Shop](https://adventofcode.com/2025/day/2) | [Rust](src/day02.rs) |
 | 3 | [Lobby](https://adventofcode.com/2025/day/3) | [Rust](src/day03.rs) |
 | 4 | [Printing Department](https://adventofcode.com/2025/day/4) | [Rust](src/day04.rs) |
+| 5 | [Cafeteria](https://adventofcode.com/2025/day/5) | [Rust](src/day05.rs) |
