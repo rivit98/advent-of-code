@@ -9,3 +9,4 @@
 | 4 | [Printing Department](https://adventofcode.com/2025/day/4) | [Rust](src/day04.rs) |
 | 5 | [Cafeteria](https://adventofcode.com/2025/day/5) | [Rust](src/day05.rs) |
 | 6 | [Trash Compactor](https://adventofcode.com/2025/day/6) | [Rust](src/day06.rs) |
+| 7 | [Laboratories](https://adventofcode.com/2025/day/7) | [Rust](src/day07.rs) |
