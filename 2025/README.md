@@ -11,3 +11,4 @@
 | 6 | [Trash Compactor](https://adventofcode.com/2025/day/6) | [Rust](src/day06.rs) |
 | 7 | [Laboratories](https://adventofcode.com/2025/day/7) | [Rust](src/day07.rs) |
 | 8 | [Playground](https://adventofcode.com/2025/day/8) | [Rust](src/day08.rs) |
+| 9 | [Movie Theater](https://adventofcode.com/2025/day/9) | [Rust](src/day09.rs) |
