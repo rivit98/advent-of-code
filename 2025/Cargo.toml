@@ -45,4 +45,9 @@ name = "day09"
 path = "src/day09.rs"
 
 
+[[bin]]
+name = "day10"
+path = "src/day10.rs"
+
 [dependencies]
+z3="0.19.6"
