@@ -14,3 +14,4 @@
 | 9 | [Movie Theater](https://adventofcode.com/2025/day/9) | [Rust](src/day09.rs) |
 | 10 | [Factory](https://adventofcode.com/2025/day/10) | [Rust](src/day10.rs) |
 | 11 | [Reactor](https://adventofcode.com/2025/day/11) | [Rust](src/day11.rs) |
+| 12 | [Christmas Tree Farm](https://adventofcode.com/2025/day/12) | [Rust](src/day12.rs) |
